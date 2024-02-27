@@ -42,6 +42,21 @@ module TestBalancer
       assert_equal 4, result.keys.count
     end
 
+    def test_with_sample_output
+      sample_json = File.read("test/sample_output.json")
+      sample_output = JSON.parse(sample_json, symbolize_names: true)
+      result = test_balancer.call(tests_with_execution_time: sample_output, subset_count: 3)
+
+      assert_subset(result, :subset_1, 9.5, ["test/sample_tests/sample_test_three_test.rb"])
+      assert_subset(result, :subset_2, 6.0, ["test/sample_tests/sample_test_two_test.rb"])
+      assert_subset(
+        result,
+        :subset_3,
+        4.1,
+        ["test/sample_tests/sample_test_one_test.rb", "test/lib/test_balancer/test_balancer_test.rb"]
+      )
+    end
+
     private
 
     def call_test_balancer(third_exection_time:, subset_count:)

@@ -8,7 +8,10 @@ module Minitest
     end
 
     def record(test)
-      test_file_path = test.source_location.first
+      absolute_test_file_path = test.source_location.first
+      working_directory = Dir.pwd
+      test_file_path = absolute_test_file_path.gsub("#{working_directory}/", "")
+
       @execution_times_per_file[test_file_path] ||= 0
       @execution_times_per_file[test_file_path] += test.time
       super

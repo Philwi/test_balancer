@@ -1,6 +1,6 @@
 require "json"
 
-module Minitest
+module TestBalancer
   class ExecutionTimeReporter < Minitest::Reporters::BaseReporter
     def initialize(options = {})
       @execution_times_per_file = {}

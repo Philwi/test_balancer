@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    test_balancer (0.1.0)
+    test_balancer (0.1.1)
+      minitest-reporters
 
 GEM
   remote: https://rubygems.org/

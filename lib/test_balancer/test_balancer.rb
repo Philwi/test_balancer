@@ -14,6 +14,7 @@ module TestBalancer
     #   subset_3: { time: 1.0, tests: ['test/seventh_test.rb', 'test/eighth_test.rb', 'test/ninth_test.rb', 'test/tenth_test.rb'] }
     # }
     def call(tests_with_execution_time:, subset_count: 2)
+      tests_with_execution_time = tests_with_execution_time.map { |test| test.transform_keys(&:to_sym) }
       tests = tests_with_execution_time.sort_by { |test| test[:execution_time] }.reverse
       assign_tests_to_subsets(tests, subset_count)
     end

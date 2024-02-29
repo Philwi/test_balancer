@@ -8,6 +8,19 @@ Add to the application's Gemfile:
 
 ## Usage
 
+### Test Execution Time Collector from XMLs
+
+If you have a directory with xmls generated from Minitest Reporter, you can use the following approach:
+
+    xml_files = Dir.glob('test/**/*_test.xml')
+    subsets = TestBalancer.calculate_distributed_tests_from_xml_files(xml_files: xml_files, subset_count: 2)
+
+If you want to write a file to use the minitest booster configuration for your CI, you can use the following approach:
+
+    TestBalancer.write_subsets_to_minitest_booster_file(subsets:, destination_file_path: 'minitest_split.json')
+
+### Test Execution Time Reporter
+
 Add to the minitest test_helper.rb file:
 
     require 'minitest/reporters'

@@ -48,8 +48,6 @@ module TestBalancer
       sample_output = JSON.parse(sample_json, symbolize_names: true)
       result = test_balancer.call(tests_with_execution_time: sample_output, subset_count: 3)
 
-      puts result.inspect
-
       assert_subset(result, :subset_1, 9.5, ["test/sample_tests/sample_test_three_test.rb"])
       assert_subset(result, :subset_2, 6.0, ["test/sample_tests/sample_test_two_test.rb"])
       assert_subset(

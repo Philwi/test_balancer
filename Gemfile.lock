@@ -3,6 +3,7 @@ PATH
   specs:
     test_balancer (0.1.1)
       minitest-reporters
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
@@ -10,18 +11,25 @@ GEM
     ansi (1.5.0)
     ast (2.4.2)
     builder (3.2.4)
+    coderay (1.1.3)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
+    method_source (1.0.0)
     minitest (5.22.2)
     minitest-reporters (1.6.1)
       ansi
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    nokogiri (1.16.2-x86_64-linux)
+      racc (~> 1.4)
     parallel (1.24.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     racc (1.7.3)
     rainbow (3.1.1)
     rake (13.1.0)
@@ -50,6 +58,7 @@ PLATFORMS
 DEPENDENCIES
   minitest
   minitest-reporters
+  pry
   rake (~> 13.0)
   rubocop (~> 1.21)
   test_balancer!

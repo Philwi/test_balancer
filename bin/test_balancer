@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "test_balancer"
+require "dry/cli"
+
+Dry::CLI.new(TestBalancer::Cli::Commands).call

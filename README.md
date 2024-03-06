@@ -8,6 +8,13 @@ Add to the application's Gemfile:
 
 ## Usage
 
+### CLI
+
+The gem provides a CLI to balance the tests for multiple CI-Nodes. You can pass a folder with xmls generated from Minitest Reporter.
+This will generate a file `minitest_split.json` in the root of the application. This file contains the distributed tests for the CI-Nodes.
+
+    ./bin/test_balancer from_xmls ./test/sample_xmls --subsets 3
+
 ### Test Execution Time Collector from XMLs
 
 If you have a directory with xmls generated from Minitest Reporter, you can use the following approach:

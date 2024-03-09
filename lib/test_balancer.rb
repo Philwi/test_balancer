@@ -16,7 +16,7 @@ module TestBalancer
     ::TestBalancer::TestBalancer.new.call(tests_with_execution_time:, subset_count:)
   end
 
-  def self.write_subsets_to_minitest_booster_file(subsets:, destination_file_path: 'minitest_split.json')
+  def self.write_subsets_to_minitest_booster_file(subsets:, destination_file_path: "minitest_split.json")
     ::TestBalancer::MinitestBoosterWriter.new(destination_file_path:).call(subsets:)
   end
 end

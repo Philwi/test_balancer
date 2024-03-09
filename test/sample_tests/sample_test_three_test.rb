@@ -2,7 +2,6 @@ require "test_helper"
 
 module SampleTests
   class SampleTestThreeTest < Minitest::Test
-
     def test_one
       sleep 9
     end

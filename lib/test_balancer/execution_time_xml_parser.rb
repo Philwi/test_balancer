@@ -1,4 +1,4 @@
-require 'nokogiri'
+require "nokogiri"
 
 class TestBalancer::ExecutionTimeXmlParser
   private
@@ -26,10 +26,10 @@ class TestBalancer::ExecutionTimeXmlParser
   # return Hash { test_path: 'test/first_test.rb', execution_time: 0.1 }
   def call
     doc = Nokogiri::XML(File.open(xml_file_path))
-    relevant_xpath = doc.xpath('//testsuite')
-    file_path = relevant_xpath.attribute('filepath').value
-    execution_time = relevant_xpath.attribute('time').value.to_f
+    relevant_xpath = doc.xpath("//testsuite")
+    file_path = relevant_xpath.attribute("filepath").value
+    execution_time = relevant_xpath.attribute("time").value.to_f
 
-    { test_path: file_path, execution_time: execution_time }
+    { test_path: file_path, execution_time: }
   end
 end

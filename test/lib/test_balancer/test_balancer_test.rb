@@ -66,7 +66,7 @@ module TestBalancer
 
     def call_test_balancer_with_huge_amount_of_tests
       examples = []
-      10000.times do |index|
+      10_000.times do |index|
         examples << { test_path: "test/#{index}_test.rb", execution_time: rand(0.1..10.0) }
       end
 

@@ -27,7 +27,8 @@ module TestBalancer::Cli::Commands
 
       average_execution_times = generate_average_execution_times(folder_path: test_execution_folder)
       if average_execution_times.empty?
-        raise FromXmlsWithMultipleTestExecutionsError, logger.error("No test execution files found in #{test_execution_folder}")
+        raise FromXmlsWithMultipleTestExecutionsError,
+              logger.error("No test execution files found in #{test_execution_folder}")
       end
 
       logger.section_end("GENERATING AVERAGE TEST EXECUTION TIMES FOR TEST SUITES")

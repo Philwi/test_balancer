@@ -28,7 +28,7 @@ class TestBalancer::AverageExecutionTimeCalculator
   # return [Array<Hash>]
   # example: [{ test_path: 'test/first_test.rb', execution_time: 0.1 }, { test_path: 'test/second_test.rb', execution_time: 0.2 }]
   def medianize
-    raise AverageExecutionTimeCalculatorError, 'No test cases added' if test_cases.empty?
+    raise AverageExecutionTimeCalculatorError, "No test cases added" if test_cases.empty?
 
     result = []
 
@@ -43,7 +43,7 @@ class TestBalancer::AverageExecutionTimeCalculator
   # return [Array<Hash>]
   # example: [{ test_path: 'test/first_test.rb', execution_time: 0.1 }, { test_path: 'test/second_test.rb', execution_time: 0.2 }]
   def trimeanize
-    raise AverageExecutionTimeCalculatorError, 'No test cases added' if test_cases.empty?
+    raise AverageExecutionTimeCalculatorError, "No test cases added" if test_cases.empty?
 
     result = []
 
@@ -75,6 +75,7 @@ class TestBalancer::AverageExecutionTimeCalculator
 
   def median(numbers:)
     return nil if numbers.empty?
+
     sorted = numbers.sort
     len = sorted.length
     (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
@@ -90,7 +91,7 @@ class TestBalancer::AverageExecutionTimeCalculator
     upper_half = numbers.select { |x| x >= m }
     t1 = median(numbers: lower_half)
     t2 = median(numbers: upper_half)
-    (t1 + 2*m + t2) / 4.0
+    (t1 + 2 * m + t2) / 4.0
   end
 
   def quantile(numbers:, p:)
@@ -102,7 +103,7 @@ class TestBalancer::AverageExecutionTimeCalculator
       numbers.last
     else
       d = n * p - k
-      numbers[k-1] + d * (numbers[k] - numbers[k-1])
+      numbers[k - 1] + d * (numbers[k] - numbers[k - 1])
     end
   end
 end

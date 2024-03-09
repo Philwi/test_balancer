@@ -52,7 +52,7 @@ module TestBalancer
       assert_equal time2, result[1][:execution_time]
     end
 
-    def create_multiple_execution_times
+    def create_multiple_execution_times # rubocop:disable Metrics/MethodLength
       median_distributor = ::TestBalancer::AverageExecutionTimeCalculator.new
       median_distributor.add_test_cases(
         tests_with_execution_time: [

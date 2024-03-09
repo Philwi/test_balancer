@@ -11,7 +11,7 @@ module TestBalancer::Cli::Commands
       "test_balancer from_xmls file1.xml file2.xml --subsets 3"
     ]
 
-    def call(xml_path:, logger: ::TestBalancer::Loggers::RainbowLogger.new, **options)
+    def call(xml_path:, logger: ::TestBalancer::Loggers::RainbowLogger.new, **options) # rubocop:disable Metrics/MethodLength
       logger.section_start("GENERATING TEST SUBSETS FROM XML FILES")
 
       file_paths = Dir.glob("#{xml_path}/**/*.xml")

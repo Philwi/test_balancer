@@ -83,27 +83,11 @@ class TestBalancer::AverageExecutionTimeCalculator
 
   def trimean(numbers:)
     numbers.sort!
-    n = numbers.length
-    q1 = quantile(numbers:, p: 0.25)
-    q3 = quantile(numbers:, p: 0.75)
     m = median(numbers:)
     lower_half = numbers.select { |x| x <= m }
     upper_half = numbers.select { |x| x >= m }
     t1 = median(numbers: lower_half)
     t2 = median(numbers: upper_half)
     (t1 + 2 * m + t2) / 4.0
-  end
-
-  def quantile(numbers:, p:)
-    n = numbers.length
-    k = (n * p).floor
-    if k < 1
-      numbers.first
-    elsif k >= n
-      numbers.last
-    else
-      d = n * p - k
-      numbers[k - 1] + d * (numbers[k] - numbers[k - 1])
-    end
   end
 end

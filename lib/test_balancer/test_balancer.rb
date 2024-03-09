@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Implement a TestBalancer class that will balance the tests execution time across multiple subsets.
 module TestBalancer
   class TestBalancer
     # @param tests_with_execution_time [Array<Hash>]
@@ -22,14 +21,19 @@ module TestBalancer
     private
 
     def assign_tests_to_subsets(tests, subset_count)
-      subsets = {}
-      subset_count.times do |i|
-        subsets["subset_#{i + 1}".to_sym] = { time: 0, tests: [] }
-      end
+      subsets = init_subsets(subset_count:)
       tests.each do |test|
         subset = subsets.min_by { |_, subset_hash| subset_hash[:time] }[0]
         subsets[subset][:time] += test[:execution_time]
         subsets[subset][:tests] << test[:test_path]
+      end
+      subsets
+    end
+
+    def init_subsets(subset_count:)
+      subsets = {}
+      subset_count.times do |i|
+        subsets["subset_#{i + 1}".to_sym] = { time: 0, tests: [] }
       end
       subsets
     end

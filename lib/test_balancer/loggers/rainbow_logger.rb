@@ -8,7 +8,7 @@ module TestBalancer::Loggers
 
     public
 
-    def initialize(logger: TestBalancer::Loggers::Logger.new(STDOUT))
+    def initialize(logger: TestBalancer::Loggers::Logger.new($stdout))
       @logger = logger
     end
 

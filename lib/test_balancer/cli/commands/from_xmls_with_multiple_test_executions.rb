@@ -18,18 +18,12 @@ module TestBalancer::Cli::Commands
       "test_balancer from_xmls_with_multiple_test_executions test_execution_folder /path/to/test_execution_folder --subsets 3"
     ]
 
-    def call(test_execution_folder:, logger: ::TestBalancer::Loggers::RainbowLogger.new, **options)
+    def call(test_execution_folder:, logger: ::TestBalancer::Loggers::RainbowLogger.new, **options) # rubocop:disable Metrics/MethodLength
       logger.section_start("GENERATING AVERAGE TEST EXECUTION TIMES FOR TEST SUITES")
-      raise FromXmlsWithMultipleTestExecutionsError, logger.error("No folder path given") if test_execution_folder.nil?
-      unless Dir.exist?(test_execution_folder)
-        raise FromXmlsWithMultipleTestExecutionsError, logger.error("No folder found at #{test_execution_folder}")
-      end
+      ensure_test_execution_folder_exists(test_execution_folder:)
 
       average_execution_times = generate_average_execution_times(folder_path: test_execution_folder)
-      if average_execution_times.empty?
-        raise FromXmlsWithMultipleTestExecutionsError,
-              logger.error("No test execution files found in #{test_execution_folder}")
-      end
+      raise FromXmlsWithMultipleTestExecutionsError, logger.error("No test execution files found in #{test_execution_folder}") if average_execution_times.empty?
 
       logger.section_end("GENERATING AVERAGE TEST EXECUTION TIMES FOR TEST SUITES")
 
@@ -43,6 +37,13 @@ module TestBalancer::Cli::Commands
     end
 
     private
+
+    def ensure_test_execution_folder_exists(test_execution_folder:)
+      raise FromXmlsWithMultipleTestExecutionsError, logger.error("No folder path given") if test_execution_folder.nil?
+      raise FromXmlsWithMultipleTestExecutionsError, logger.error("No folder found at #{test_execution_folder}") unless Dir.exist?(test_execution_folder)
+
+      true
+    end
 
     def generate_average_execution_times(folder_path:)
       average_execution_time_calculator = TestBalancer::AverageExecutionTimeCalculator.new

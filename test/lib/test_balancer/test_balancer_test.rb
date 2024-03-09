@@ -3,7 +3,6 @@
 require "test_helper"
 require "json"
 
-# rubocop:disable Naming/VariableNumber
 module TestBalancer
   class TestBalancerTest < Minitest::Test
     def test_balancing_tests_with_huge_peak
@@ -11,30 +10,15 @@ module TestBalancer
 
       assert_subset(result, :subset_1, 25.3, ["test/third_test.rb"])
       assert_subset(result, :subset_2, 4.7, ["test/fourth_test.rb"])
-      assert_subset(
-        result,
-        :subset_3,
-        2.4,
-        ["test/tenth_test.rb", "test/seventh_test.rb", "test/sixth_test.rb", "test/first_test.rb"]
-      )
-      assert_subset(
-        result,
-        :subset_4,
-        2.4,
-        ["test/ninth_test.rb", "test/eighth_test.rb", "test/fifth_test.rb", "test/second_test.rb"]
-      )
+      assert_subset(result, :subset_3, 2.4, ["test/tenth_test.rb", "test/seventh_test.rb", "test/sixth_test.rb", "test/first_test.rb"])
+      assert_subset(result, :subset_4, 2.4, ["test/ninth_test.rb", "test/eighth_test.rb", "test/fifth_test.rb", "test/second_test.rb"])
     end
 
     def test_balancing_tests_with_almost_equally_distributed_execution_times
       result = call_test_balancer(third_exection_time: 2, subset_count: 3)
 
       assert_subset(result, :subset_1, 4.7, ["test/fourth_test.rb"])
-      assert_subset(
-        result,
-        :subset_2,
-        3.4,
-        ["test/third_test.rb", "test/seventh_test.rb", "test/sixth_test.rb", "test/first_test.rb"]
-      )
+      assert_subset(result, :subset_2, 3.4, ["test/third_test.rb", "test/seventh_test.rb", "test/sixth_test.rb", "test/first_test.rb"])
       assert_subset(result, :subset_3, 3.4)
     end
 
@@ -50,12 +34,7 @@ module TestBalancer
 
       assert_subset(result, :subset_1, 9.5, ["test/sample_tests/sample_test_three_test.rb"])
       assert_subset(result, :subset_2, 6.0, ["test/sample_tests/sample_test_two_test.rb"])
-      assert_subset(
-        result,
-        :subset_3,
-        4.1,
-        ["test/sample_tests/sample_test_one_test.rb", "test/lib/test_balancer/test_balancer_test.rb"]
-      )
+      assert_subset(result, :subset_3, 4.1, ["test/sample_tests/sample_test_one_test.rb", "test/lib/test_balancer/test_balancer_test.rb"])
     end
 
     private
@@ -82,7 +61,7 @@ module TestBalancer
       ::TestBalancer::TestBalancer.new
     end
 
-    def example_tests(third_exection_time: 2)
+    def example_tests(third_exection_time: 2) # rubocop:disable Metrics/MethodLength
       [
         { test_path: "test/first_test.rb", execution_time: 0.1 },
         { test_path: "test/second_test.rb", execution_time: 0.2 },

@@ -15,6 +15,10 @@ This will generate a file `minitest_split.json` in the root of the application. 
 
     ./bin/test_balancer from_xmls ./test/sample_xmls --subsets 3
 
+You can also use multiple test suite execution times to calculate the median or trimean of the execution times. This will generate a file `minitest_split.json` in the root of the application. This file contains the distributed tests for the CI-Nodes.
+
+    ./bin/test_balancer from_xmls_with_multiple_test_executions ./test --subsets 3
+
 ### Test Execution Time Collector from XMLs
 
 If you have a directory with xmls generated from Minitest Reporter, you can use the following approach:

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "pry"
+
 require "zeitwerk"
 loader = Zeitwerk::Loader.for_gem
 loader.setup # ready!

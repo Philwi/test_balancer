@@ -14,7 +14,7 @@ module TestBalancer::Cli::Commands
     def call(xml_path:, logger: ::TestBalancer::Loggers::RainbowLogger.new, **options)
       logger.section_start("GENERATING TEST SUBSETS FROM XML FILES")
 
-      file_paths = Dir.glob("#{xml_path}/*.xml")
+      file_paths = Dir.glob("#{xml_path}/**/*.xml")
       subsets = options[:subsets].to_i
       raise logger.error("No XML files found in #{xml_path}") if file_paths.empty?
 

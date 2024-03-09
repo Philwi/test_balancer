@@ -5,6 +5,7 @@ PATH
       dry-cli
       minitest-reporters
       nokogiri
+      rainbow
 
 GEM
   remote: https://rubygems.org/

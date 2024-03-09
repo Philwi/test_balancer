@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-cli"
   spec.add_dependency "minitest-reporters"
   spec.add_dependency "nokogiri"
+  spec.add_dependency "rainbow"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
